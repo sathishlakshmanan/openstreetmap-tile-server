@@ -1,3 +1,28 @@
+# Example OSM data for Germany
+
+Clone the repository
+```
+git clone git@github.com:sathishlakshmanan/openstreetmap-tile-server.git
+```
+Get the map data (Germany in this example)
+```
+wget https://download.geofabrik.de/europe/germany-latest.osm.pbf
+```
+Create a new docker volume
+```
+ docker volume create osm-data
+```
+Build the `import_map` service (specify the absolute file path of the downloaded `.osm.pbf` file)
+```
+docker compose up --build import_map
+```
+Build and run the `run_map` service
+```
+docker compose up -d --build run_map
+```
+
+
+
 # openstreetmap-tile-server
 
 [![Build Status](https://travis-ci.org/Overv/openstreetmap-tile-server.svg?branch=master)](https://travis-ci.org/Overv/openstreetmap-tile-server) [![](https://images.microbadger.com/badges/image/overv/openstreetmap-tile-server.svg)](https://microbadger.com/images/overv/openstreetmap-tile-server "openstreetmap-tile-server")
