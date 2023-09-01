@@ -1,8 +1,17 @@
 version: '3'
 
 services:
-  map:
+  import_map:
     image: overv/openstreetmap-tile-server
+    container_name: osm-tile-server-import
+    volumes:
+      - /home/data/osm/germany-latest.osm.pbf:/data/germany-latest.osm.pbf
+      - osm-data:/data/database/
+    command: "import"
+
+  run_map:
+    image: overv/openstreetmap-tile-server
+    container_name: osm-tile-server-run
     volumes:
       - osm-data:/data/database/
     ports:
